@@ -1,29 +1,96 @@
-Office Placement Application
-Objective:
-This project aims to digitally track and manage faculty office assignments within an institution.
-Key Features:
-• Database of office numbers, capacity, building, and floor.
-• Record of occupiers (faculty/staff).
-• Search & filter by department, occupant, or office number.
-• Admin panel to update and manage data.
-• Exportable reports for planning.
-• Optional: Campus map integration for office visualization.
-System Architecture:
-• Frontend: React (with advanced search and filtering features).
-• Backend: Django REST Framework (API-based communication).
-• Database: PostgreSQL (relational mapping for efficient queries).
-• Optional: Map-based UI integration using Leaflet or Google Maps API.
-Implementation Notes:
-• Track office history to know previous occupants.
-• Automatically flag conflicts such as overcapacity or duplicate assignments.
-• Allow administrators to easily update or reassign offices.
-• Reports can be exported in CSV or PDF format for planning purposes.
-Setup Instructions (Basic):
-1. Clone the repository.
-2. Install dependencies for both frontend and backend.
-3. Configure PostgreSQL database and environment variables.
-4. Run Django migrations.
-5. Start backend and frontend servers.
-6. Access admin panel to manage data.
-License:
-This project is open for educational and institutional use.
+# Office Placement Application - Backend 🚀
+
+This repository contains the backend service for the "Office Placement Application," a digital tool designed to track and manage faculty and staff office assignments across a campus. Built with Python, Django, and Django REST Framework, it provides a comprehensive API for managing buildings, offices, faculty, departments, and their assignments.
+
+---
+
+## Key Features
+
+* **RESTful API:** Full CRUD (Create, Read, Update, Delete) operations for all data models.
+* **Relational Data:** Manages the complex relationships between buildings, offices, faculty, and departments.
+* **Assignment Tracking:** Links faculty to specific offices with start and end dates.
+* **Office History:** Maintains a complete historical log of an office's occupants over time.
+* **Capacity Control:** Includes business logic to prevent assigning personnel to an office that is already at full capacity.
+* **Advanced Search & Filtering:** Allows filtering API results by department, building, floor, capacity, or occupant name.
+* **Browsable API:** A user-friendly, browser-based interface for testing and interacting with the API, generated automatically by DRF.
+* **Admin Panel:** A pre-configured Django Admin interface for easy and direct data management by administrators.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Backend:** Python 3, Django
+* **API:** Django REST Framework (DRF)
+* **Database:** PostgreSQL
+* **Dependencies:** `pip` / `requirements.txt`
+* **DB Connection:** `dj_database_url`
+* **Filtering:** `django-filter`
+
+---
+
+## 🚀 Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
+
+### 1. Prerequisites
+
+* [Python 3.8+](https://www.python.org/downloads/)
+* [Git](https://git-scm.com/downloads)
+* A running [PostgreSQL](https://www.postgresql.org/download/) database (or a cloud-based instance, e.g., from [Supabase](https://supabase.com/))
+
+### 2. Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/zeyneptokgoz-cpu/office-placement-application-.git](https://github.com/zeyneptokgoz-cpu/office-placement-application-.git)
+    cd office-placement-application-
+    ```
+
+2.  **Create and activate a virtual environment:**
+    ```bash
+    # Create the environment
+    python -m venv venv
+
+    # Activate the environment
+    # On Windows:
+    .\venv\Scripts\activate
+    # On macOS/Linux:
+    source venv/bin/activate
+    ```
+
+3.  **Install dependencies:**
+    (First, ensure you have the core packages installed)
+    ```bash
+    pip install django djangorestframework psycopg2-binary dj-database-url django-filter
+    
+    # After installing, save them to requirements.txt
+    pip freeze > requirements.txt
+    
+    # (If requirements.txt is already complete, just run:)
+    # pip install -r requirements.txt
+    ```
+
+4.  **Configure the Database:**
+    * Open the `office_management/settings.py` file.
+    * Find the line `DATABASE_URL = '...'`.
+    * Paste your PostgreSQL connection URL into the quotes. (e.g., `postgres://user:password@host:port/dbname`)
+
+5.  **Run Database Migrations:**
+    This will create all the necessary tables in your PostgreSQL database.
+    ```bash
+    python manage.py migrate
+    ```
+
+6.  **Create an Admin Superuser:**
+    You will use this account to log in to the `/admin` panel.
+    ```bash
+    python manage.py createsuperuser
+    ```
+    (Follow the prompts to create your username and password)
+
+### 3. Running the Server
+
+Once setup is complete, you can run the development server:
+
+```bash
+python manage.py runserver
