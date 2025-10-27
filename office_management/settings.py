@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url  # <-- PostgreSQL bağlantısı için eklendi
+import os               # <-- (Genellikle dj_database_url ile kullanılır)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,17 +22,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# Bu anahtar sana özeldir, değiştirmene gerek yok
 SECRET_KEY = 'django-insecure-by==k=-d=vs4+=9v%ofw11gm(ts32^0=+x9jo)ney4=cf@efft'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Geliştirme aşamasında 'True' kalması iyidir
 DEBUG = True
 
+# Projenizi yayınlarken buraya sitenizin adresini (domain) eklemeniz gerekecek
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Bizim uygulamalarımız en üstte olmalı
+    'api.apps.ApiConfig',  # 'api' uygulamamızı tanıttık
+    
+    # Üçüncü parti uygulamalar
+    'rest_framework',      # Django REST Framework'ü tanıttık
+    
+    # Django'nun kendi uygulamaları
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,13 +83,31 @@ WSGI_APPLICATION = 'office_management.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+#
+# ---- POSTGRESQL AYARI ----
+# Burası SQLite'tan PostgreSQL'e dönüştürüldü.
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# !!! ÇOK ÖNEMLİ !!!
+# LÜTFEN 'postgres://...' İLE BAŞLAYAN KENDİ VERİTABANI URL'NİZİ AŞAĞIYA YAPIŞTIRIN
+# BU URL'Yİ SUPABASE VEYA POSTGRESQL SAĞLAYICINIZDAN ALMALISINIZ
+# ÖRNEK: 'postgres://postgres:[SIFRENIZ]@db.abc.supabase.co:5432/postgres'
+DATABASE_URL = 'BURAYA_KENDİ_POSTGRESQL_URLNİZİ_YAPIŞTIRIN'
+
+
+# DATABASE_URL boş değilse dj_database_url ile ayarla
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL)
     }
-}
+else:
+    # URL boşsa, hata vermemesi için geçici olarak SQLite'a düşür
+    print("UYARI: DATABASE_URL ayarlanmamış. Geçici olarak SQLite kullanılıyor.")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -102,12 +132,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
+# Projenin dilini ve saat dilimini Türkçeye ayarlayalım
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_TZ = True
 
 
