@@ -30,7 +30,7 @@ class Faculty(models.Model):
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True, related_name="staff")
 
     class Meta:
-        verbose_name_plural = "Faculty" # Admin panelinde "Facultys" yerine "Faculty" yazar
+        verbose_name_plural = "Faculty"
 
     def __str__(self):
         return f"{self.title} {self.full_name}"

@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
 import dj_database_url  # <-- PostgreSQL bağlantısı için eklendi
 import os               # <-- (Genellikle dj_database_url ile kullanılır)
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -81,20 +82,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'office_management.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-#
-# ---- POSTGRESQL AYARI ----
-# Burası SQLite'tan PostgreSQL'e dönüştürüldü.
-
-# !!! ÇOK ÖNEMLİ !!!
 # LÜTFEN 'postgres://...' İLE BAŞLAYAN KENDİ VERİTABANI URL'NİZİ AŞAĞIYA YAPIŞTIRIN
 # BU URL'Yİ SUPABASE VEYA POSTGRESQL SAĞLAYICINIZDAN ALMALISINIZ
 # ÖRNEK: 'postgres://postgres:[SIFRENIZ]@db.abc.supabase.co:5432/postgres'
-DATABASE_URL = 'BURAYA_KENDİ_POSTGRESQL_URLNİZİ_YAPIŞTIRIN'
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 
-# DATABASE_URL boş değilse dj_database_url ile ayarla
 if DATABASE_URL:
     DATABASES = {
         'default': dj_database_url.config(default=DATABASE_URL)
