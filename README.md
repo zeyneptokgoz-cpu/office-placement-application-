@@ -1,4 +1,4 @@
-# Office Placement Application - Backend 🚀
+# Office Placement Application - Backend 
 
 This repository contains the backend service for the "Office Placement Application," a digital tool designed to track and manage faculty and staff office assignments across a campus. Built with Python, Django, and Django REST Framework, it provides a comprehensive API for managing buildings, offices, faculty, departments, and their assignments.
 
@@ -17,7 +17,7 @@ This repository contains the backend service for the "Office Placement Applicati
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 * **Backend:** Python 3, Django
 * **API:** Django REST Framework (DRF)
@@ -28,7 +28,7 @@ This repository contains the backend service for the "Office Placement Applicati
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
 
