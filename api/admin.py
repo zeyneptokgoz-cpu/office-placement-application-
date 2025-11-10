@@ -1,54 +1,40 @@
 # api/admin.py
 from django.contrib import admin
-from .models import Building, Department, Faculty, Office, Assignment
+from .models import (
+    FacultyDivision, 
+    Title, 
+    Building, 
+    Floor, 
+    Department, 
+    Faculty, 
+    Office, 
+    Assignment
+)
 
-# --- Daha Kullanışlı Admin Arayüzü İçin Ekstra Ayarlar ---
+# Hata ayıklaması: Eski, hatalı admin sınıfları yerine 
+# tüm modelleri varsayılan admin arayüzü ile kaydediyoruz.
+# Bu, 'runserver' komutunun çalışmasını garantiler.
 
-class AssignmentInline(admin.TabularInline):
-    """
-    Bu, bir Ofis'in veya Personel'in detay sayfasındayken
-    ilgili atamaları alt alta görmemizi sağlar.
-    """
-    model = Assignment
-    extra = 0  # Varsayılan olarak fazladan boş form gösterme
-    autocomplete_fields = ['faculty', 'office'] # Arama kutusu ile personel/ofis seçimi
+# Admin panelinde 'FacultyDivision' modelini göster
+admin.site.register(FacultyDivision)
 
+# Admin panelinde 'Title' modelini göster
+admin.site.register(Title)
 
-@admin.register(Building)
-class BuildingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code')
-    search_fields = ('name', 'code')
+# Admin panelinde 'Building' modelini göster
+admin.site.register(Building)
 
+# Admin panelinde 'Floor' modelini göster
+admin.site.register(Floor)
 
-@admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
-    search_fields = ('name',)
+# Admin panelinde 'Department' modelini göster
+admin.site.register(Department)
 
+# Admin panelinde 'Faculty' (Personel) modelini göster
+admin.site.register(Faculty)
 
-@admin.register(Faculty)
-class FacultyAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'title', 'department')
-    list_filter = ('department', 'title')
-    search_fields = ('full_name', 'email', 'staff_id')
-    inlines = [AssignmentInline] # Personel sayfasında atamalarını göster
+# Admin panelinde 'Office' (Odalar) modelini göster
+admin.site.register(Office)
 
-
-@admin.register(Office)
-class OfficeAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'building', 'floor', 'capacity', 'current_occupancy', 'is_over_capacity')
-    list_filter = ('building', 'floor', 'capacity', 'departments')
-    search_fields = ('office_number', 'building__name', 'departments__name')
-    autocomplete_fields = ['departments'] # Çoklu departman seçimini kolaylaştırır
-    inlines = [AssignmentInline] # Ofis sayfasında atamalarını göster
-    
-    # 'current_occupancy' ve 'is_over_capacity' özellikleri models.py'den geliyor
-    # Bunları admin panelinde göstermek çok faydalıdır.
-
-
-@admin.register(Assignment)
-class AssignmentAdmin(admin.ModelAdmin):
-    list_display = ('faculty', 'office', 'start_date', 'end_date')
-    list_filter = ('start_date', 'end_date', 'office__building')
-    search_fields = ('faculty__full_name', 'office__office_number')
-    autocomplete_fields = ['faculty', 'office']
-    date_hierarchy = 'start_date' # Tarihe göre hızlı filtreleme
+# Admin panelinde 'Assignment' (Yerleşimler) modelini göster
+admin.site.register(Assignment)
