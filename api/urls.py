@@ -9,6 +9,11 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+# --- YENİ VIEW'İ (RegisterView) IMPORT EDİYORUZ ---
+# (views.'dan RegisterView'i de alıyoruz)
+from .views import RegisterView
+
+
 # --- Router Ayarları (Mevcut kodunuz) ---
 # DefaultRouter, ViewSet'lerimiz için tüm URL'leri otomatik olarak oluşturur.
 router = DefaultRouter()
@@ -33,4 +38,7 @@ urlpatterns = [
     
     # Token yenileme adresi: api/token/refresh/
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    
+    # --- 3. YENİ KAYIT (SIGN-UP) URL'İ ---
+    path('register/', RegisterView.as_view(), name='register'),
 ]
