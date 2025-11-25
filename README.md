@@ -1,42 +1,47 @@
-# Office Placement Application - Backend 
+# Office Placement Application - Backend API
 
-This repository contains the backend service for the "Office Placement Application," a digital tool designed to track and manage faculty and staff office assignments across a campus. Built with Python, Django, and Django REST Framework, it provides a comprehensive API for managing buildings, offices, faculty, departments, and their assignments.
+This repository contains the robust backend service for the "Office Placement Application," a digital tool designed to track and manage faculty and staff office assignments across a campus. Built with **Python** and **Django REST Framework**, it provides a secure and comprehensive API for managing buildings, offices, faculty, departments, and their assignments.
 
----
-
-## Key Features
-
-* **RESTful API:** Full CRUD (Create, Read, Update, Delete) operations for all data models.
-* **Relational Data:** Manages the complex relationships between buildings, offices, faculty, and departments.
-* **Assignment Tracking:** Links faculty to specific offices with start and end dates.
-* **Office History:** Maintains a complete historical log of an office's occupants over time.
-* **Capacity Control:** Includes business logic to prevent assigning personnel to an office that is already at full capacity.
-* **Advanced Search & Filtering:** Allows filtering API results by department, building, floor, capacity, or occupant name.
-* **Browsable API:** A user-friendly, browser-based interface for testing and interacting with the API, generated automatically by DRF.
-* **Admin Panel:** A pre-configured Django Admin interface for easy and direct data management by administrators.
+This system is designed to integrate seamlessley with an existing legacy PostgreSQL database.
 
 ---
 
-##  Technology Stack
+##  Key Features
 
-* **Backend:** Python 3, Django
+* **🔐 Secure Authentication:** Full **JWT (JSON Web Token)** implementation for secure login and session management.
+* **👤 User Registration:** Public endpoint allowing new users to sign up and create accounts via the API.
+* **🛡️ Role-Based Access Control (RBAC):**
+    * **Admin:** Full access to Create, Read, Update, and Delete (CRUD) all data.
+    * **Authenticated Users:** Read-only access to view faculty lists and assignments.
+    * **Public:** Access to general building and department information.
+* **💾 Legacy Database Integration:** Expertly mapped to an existing PostgreSQL schema, preserving historical data integrity without data migration conflicts.
+* **🧪 Automated Testing:** Comprehensive unit tests covering user registration, authentication flows, and permission enforcement.
+* **🏢 Assignment Tracking:** Links faculty to specific offices with start/end dates, maintaining a historical log of occupants.
+* **📊 Capacity Control:** Business logic prevents assigning personnel to fully occupied offices.
+* **🔎 Advanced Filtering:** Filter API results by department, building, floor, capacity, or occupant name.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Core:** Python 3.10+, Django 5
 * **API:** Django REST Framework (DRF)
-* **Database:** PostgreSQL
-* **Dependencies:** `pip` / `requirements.txt`
-* **DB Connection:** `dj_database_url`
-* **Filtering:** `django-filter`
+* **Authentication:** `djangorestframework-simplejwt`
+* **Database:** PostgreSQL (Production-ready)
+* **Environment:** `python-dotenv` for secure configuration
+* **Utilities:** `dj_database_url`, `django-filter`
 
 ---
 
-##  Getting Started
+## 🏁 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing.
+Follow these instructions to set up the project on your local machine for development and testing.
 
 ### 1. Prerequisites
 
 * [Python 3.8+](https://www.python.org/downloads/)
 * [Git](https://git-scm.com/downloads)
-* A running [PostgreSQL](https://www.postgresql.org/download/) database (or a cloud-based instance, e.g., from [Supabase](https://supabase.com/))
+* [PostgreSQL](https://www.postgresql.org/download/) (Local installation or cloud instance like Supabase)
 
 ### 2. Installation & Setup
 
@@ -48,49 +53,57 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 2.  **Create and activate a virtual environment:**
     ```bash
-    # Create the environment
+    # Windows
     python -m venv venv
-
-    # Activate the environment
-    # On Windows:
     .\venv\Scripts\activate
-    # On macOS/Linux:
+
+    # macOS/Linux
+    python3 -m venv venv
     source venv/bin/activate
     ```
 
 3.  **Install dependencies:**
-    (First, ensure you have the core packages installed)
     ```bash
-    pip install django djangorestframework psycopg2-binary dj-database-url django-filter
-    
-    # After installing, save them to requirements.txt
-    pip freeze > requirements.txt
-    
-    # (If requirements.txt is already complete, just run:)
-    # pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
 
-4.  **Configure the Database:**
-    * Open the `office_management/settings.py` file.
-    * Find the line `DATABASE_URL = '...'`.
-    * Paste your PostgreSQL connection URL into the quotes. (e.g., `postgres://user:password@host:port/dbname`)
+4.  **Configure Environment Variables:**
+    Create a `.env` file in the root directory (next to `manage.py`) and add your database credentials.
+    * **Note:** Do not edit `settings.py` directly for secrets.
 
-5.  **Run Database Migrations:**
-    This will create all the necessary tables in your PostgreSQL database.
+    ```ini
+    # .env file content
+    DEBUG=True
+    SECRET_KEY=your-secret-key-here
+    # Format: postgres://USER:PASSWORD@HOST:PORT/DB_NAME
+    DATABASE_URL=postgres://postgres:password@localhost:5432/officeplacementapp
+    ```
+
+5.  **Database Setup (Legacy Integration):**
+     Since this project uses a legacy database schema, you should restore the provided SQL backup instead of standard migration.
+
+    *Option A: If you have the `officeplacement_backup.sql` file:*
+    ```bash
+    # Restore the database structure and data
+    psql -U postgres -d officeplacementapp -f officeplacement_backup.sql
+    
+    # Fix Django ID sequences (Crucial step!)
+    python manage.py sqlsequencereset api | psql -U postgres -d officeplacementapp
+    ```
+
+    *Option B: If starting fresh (Structure only):*
     ```bash
     python manage.py migrate
     ```
 
-6.  **Create an Admin Superuser:**
-    You will use this account to log in to the `/admin` panel.
+6.  **Create an Admin User:**
     ```bash
     python manage.py createsuperuser
     ```
-    (Follow the prompts to create your username and password)
 
 ### 3. Running the Server
 
-Once setup is complete, you can run the development server:
+Start the local development server:
 
 ```bash
 python manage.py runserver
