@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # --- 1. Hizmet: Veritabanı (PostgreSQL) ---
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=officeplacementapp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=docker_password_123
+    ports:
+      - "5432:5432"  # Bilgisayarından da erişebilmek için
+
+  # --- 2. Hizmet: Backend (Django) ---
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Kodunda yaptığın değişikliği anında Docker'da gör
+    ports:
+      - "8000:8000"
+    environment:
+      # Burası ÇOK ÖNEMLİ: Artık 'localhost' değil 'db' servisine bağlanıyoruz
+      - DATABASE_URL=postgres://postgres:docker_password_123@db:5432/officeplacementapp
+      - SECRET_KEY=django-insecure-docker-key
+      - DEBUG=True
+    depends_on:
+      - db  # Veritabanı açılmadan Django açılmasın
+
+volumes:
+  postgres_data:
