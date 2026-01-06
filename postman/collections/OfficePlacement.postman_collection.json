@@ -1,0 +1,615 @@
+{
+  "info": {
+    "_postman_id": "3af56d27-1723-4069-b846-cd2adc186ffb",
+    "name": "OfficePlacement",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://127.0.0.1:8000/api/token/",
+      "id": "58ae342d-8278-44e2-ad19-cae31736c2d3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"ozgur\",\r\n    \"password\": \"12345\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/token/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "token",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "offices",
+      "id": "9328456d-e243-4335-982d-f488203ef415",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3MzA5NTUxLCJpYXQiOjE3NjczMDU5NTEsImp0aSI6IjY5ZWIyNjg5OGY5MDRjNjg5NjJmZDUzNjczM2RhNTU0IiwidXNlcl9pZCI6IjEifQ.TMBeJvbpFd_WVJei-G88TdkrEHQfhgSLBbLg7YEu5bc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offices/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offices",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://127.0.0.1:8000/api/offices/",
+      "id": "807c05f9-8311-4a86-8590-54813e3958bb",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2MjI5NTYzOSwiaWF0IjoxNzYyMjA5MjM5LCJqdGkiOiI2MzA3MDA5OTA1OGY0YWZmODkwYTg1OTZmNzI0MWNiYiIsInVzZXJfaWQiOiIxIn0.BXjpKv0WSlixpXDfZy3xjz1KribRGOvd0c8mny47fGs\",\"access\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyMjA5NTM5LCJpYXQiOjE3NjIyMDkyMzksImp0aSI6ImI3YjgxZTdjMDFkYzQ4ODM4ZGJlNDJlNTc4OTBjNDFjIiwidXNlcl9pZCI6IjEifQ.8H1CrvdDrR-uHF-EVc1iERX2CKOEr0fNDj2qlOdwhDo",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offices/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offices",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assignments",
+      "id": "1960576c-b3f7-467c-8b99-f21466ea624e",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODU3MDk2LCJpYXQiOjE3NjI4NTY3OTYsImp0aSI6ImQwNTQ4M2ZlZWVmYzQzYmFhM2VjMzRhMzI5YjU5NDdmIiwidXNlcl9pZCI6IjEifQ.oO6NK7pcGC5WppE8wboPjlmOGTVMXVC8lZhkURVm6-I",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/assignments/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "assignments",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "sign-up API",
+      "id": "7772b7af-9d9f-491e-b2e5-09b76600a197",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"ozgur\",\r\n    \"email\": \"ozgr2908@gmail.com\",\r\n    \"password\": \"12345\",\r\n    \"password2\": \"12345\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/sign-up/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "sign-up",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "faculty",
+      "id": "18f62bb9-107b-4554-b572-e69857e0d30c",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3MzA5NTUxLCJpYXQiOjE3NjczMDU5NTEsImp0aSI6IjY5ZWIyNjg5OGY5MDRjNjg5NjJmZDUzNjczM2RhNTU0IiwidXNlcl9pZCI6IjEifQ.TMBeJvbpFd_WVJei-G88TdkrEHQfhgSLBbLg7YEu5bc",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/faculty/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "faculty",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Departments",
+      "id": "95da9d93-dbc3-496c-a758-74c45dc1a0e1",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3MzA3NzEwLCJpYXQiOjE3NjczMDQxMTAsImp0aSI6ImM4YzRiYzA2YjI2NTRmMTI4NGEwMzI0OWE3OWE1Nzg1IiwidXNlcl9pZCI6IjEifQ.j5EFSHZoBdoa64CmS9qgAnTeK_9WVl9BA1r0NVp7qVE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/departments/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "departments",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buildings",
+      "id": "cf1c79d3-496e-44b7-bae4-c1cef377d467",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY3MzA3NzEwLCJpYXQiOjE3NjczMDQxMTAsImp0aSI6ImM4YzRiYzA2YjI2NTRmMTI4NGEwMzI0OWE3OWE1Nzg1IiwidXNlcl9pZCI6IjEifQ.j5EFSHZoBdoa64CmS9qgAnTeK_9WVl9BA1r0NVp7qVE",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/buildings/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "buildings",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deleting assignments",
+      "id": "2578b49e-00de-4531-88db-8af3a52a6b0f",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODExOTMxLCJpYXQiOjE3NjI4MTE2MzEsImp0aSI6ImYxMjdjM2ViMGY2YjQwYTliNzBmZTBmMDY2MmE1OGVmIiwidXNlcl9pZCI6IjEifQ.GpEAzKep3389OQkqUJckImW27ry5zRMMchc6DVhoxpQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/assignments/109/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "assignments",
+            "109",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update assignements",
+      "id": "122f5915-6bf6-4add-a33e-44d22dee733e",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODExODI4LCJpYXQiOjE3NjI4MTE1MjgsImp0aSI6ImNlN2NmYjk2ODhhYjQ3MzZiNmZiZjY1MWFkNzg3MmI4IiwidXNlcl9pZCI6IjEifQ.k3DebjiGPF96qWd_ztHBmWMIOmOuNgD07l_B82nDa4Q",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"end_date\": \"2025-11-11\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/assignments/109/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "assignments",
+            "109",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Assignements",
+      "id": "78d6f147-ba54-429a-8e39-e809de9ff491",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODU3MDk2LCJpYXQiOjE3NjI4NTY3OTYsImp0aSI6ImQwNTQ4M2ZlZWVmYzQzYmFhM2VjMzRhMzI5YjU5NDdmIiwidXNlcl9pZCI6IjEifQ.oO6NK7pcGC5WppE8wboPjlmOGTVMXVC8lZhkURVm6-I",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"faculty\": 1,\r\n    \"office\": 1,\r\n    \"start_date\": \"2025-11-10\",\r\n    \"notes\": \"API üzerinden test ataması\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/assignments/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "assignments",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "offices adding",
+      "id": "eaff4eab-74ba-4f2e-b2a4-4592a98c02f1",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODEwMDgxLCJpYXQiOjE3NjI4MDk3ODEsImp0aSI6IjEzNjkwYWM1NWM4NzQ1OWViYjBiZTE5MDZkZTg0NjEyIiwidXNlcl9pZCI6IjEifQ.-_UYfTa3ZvWBhHhvXOLthy5yTFymZtji4wFRZj1vHYQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"room_number\": \"TEST-API-101\",\r\n    \"capacity\": 5,\r\n    \"building\": 1,\r\n    \"department\": 1,\r\n    \"floor\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offices/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offices",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "office update",
+      "id": "9201783f-5a68-49df-9b36-6f9709d0e529",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyODEwNjEzLCJpYXQiOjE3NjI4MTAzMTMsImp0aSI6IjQ5YjE1ZmM4MDUyYzRkNGM4MDA0ZTdiMTc2ZDY0MjJlIiwidXNlcl9pZCI6IjEifQ.KnB5jkiicoXfhSayM1TZOngBIPC3jblbEY1-_1g7dJA",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"capacity\": 15,\r\n    \"room_number\": \"TEST-API-101 (GÜNCELLENDİ)\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offices/40/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offices",
+            "40",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/token/refresh/",
+      "id": "57b5a94a-a110-454d-808e-302b3ced188a",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTMyMDQzMSwiaWF0IjoxNzY1MjM0MDMxLCJqdGkiOiJhMjJhZDc3NjdlNjY0Yzg0OWI0MTViNTQzY2RiOTU0NyIsInVzZXJfaWQiOiIxIn0.tAnpBD_HlqBc-gxQ3YKx25wyWkGyYu3NChYOdsNpg0Y\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/token/refresh/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "token",
+            "refresh",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete office",
+      "id": "b1b17e6f-f23f-48e6-869c-d3267905917c",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY1MjM0Njk2LCJpYXQiOjE3NjUyMzQzOTYsImp0aSI6IjkxNjJjMDY1NzI0MTRmYTg5OWMwOGRkMzEzMzcwNmI4IiwidXNlcl9pZCI6IjEifQ.mGREDUz-Td2k-Zz4AKmKGqcfIA9_86x8Q7NPDuUJryM",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/offices/4/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "offices",
+            "4",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create assignments",
+      "id": "11deb90a-2f73-4c3f-97ad-8977a3137874",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY1MjM0ODc5LCJpYXQiOjE3NjUyMzQ1NzksImp0aSI6ImY0NzIzYzA1NWZhNDQzYzM5MDQ5OWJjYjM1NjlmYzIyIiwidXNlcl9pZCI6IjEifQ.USJ2JGLWNQxXy6UJJZc9kMviEx7xzfN1kaqqGELNSYQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"faculty\": 1,\r\n    \"office\": 1,\r\n    \"start_date\": \"2025-01-01\",\r\n    \"notes\": \"Postman üzerinden atama\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/assignments/",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "assignments",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
