@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final University - Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="assest/img/Logo 1.png" alt="Final University" class="logo-image">
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Back to Main Site</a>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <div class="menu-item active" data-tab="dashboard">
+                    📊 Dashboard
+                </div>
+                <div class="menu-item" data-tab="professors">
+                    👨‍🏫 Manage Professors
+                </div>
+                <div class="menu-item" data-tab="offices">
+                    🏢 Manage Offices
+                </div>
+                <div class="menu-item" data-tab="equipment">
+                    💻 Manage Equipment
+                </div>
+                <div class="menu-item" data-tab="schedule">
+                    🕒 Manage Schedules
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- DASHBOARD -->
+            <div id="dashboard" class="tab-content active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Professors</h3>
+                        <div class="stat-number" id="total-professors">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Offices</h3>
+                        <div class="stat-number" id="total-offices">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Equipment</h3>
+                        <div class="stat-number" id="total-equipment">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>This Week Schedules</h3>
+                        <div class="stat-number" id="total-schedules">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MANAGE PROFESSORS -->
+            <div id="professors" class="tab-content">
+                <div class="section-header">
+                    <h2>Manage Professors</h2>
+                    <button class="btn btn-primary" onclick="openProfessorModal()">+ Add Professor</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Office</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="professors-table">
+                            <!-- Professors will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MANAGE OFFICES -->
+            <div id="offices" class="tab-content">
+                <div class="section-header">
+                    <h2>Manage Offices</h2>
+                    <button class="btn btn-primary" onclick="openOfficeModal()">+ Add Office</button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Office Number</th>
+                                <th>Building</th>
+                                <th>Floor</th>
+                                <th>Professors</th>
+                                <th>Equipment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="offices-table">
+                            <!-- Offices will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- MANAGE EQUIPMENT -->
+            <div id="equipment" class="tab-content">
+                <div class="section-header">
+                    <h2>Manage Equipment</h2>
+                    <button class="btn btn-primary" onclick="openEquipmentModal()">+ Add Equipment</button>
+                </div>
+                <div class="equipment-grid" id="equipment-grid">
+                    <!-- Equipment will be loaded here -->
+                </div>
+            </div>
+
+            <!-- MANAGE SCHEDULES -->
+            <div id="schedule" class="tab-content">
+                <div class="section-header">
+                    <h2>Manage Schedules</h2>
+                    <select id="professor-select" onchange="admin.loadProfessorSchedule(this.value)">
+                        <option value="">Select Professor</option>
+                    </select>
+                </div>
+                <div id="schedule-management">
+                    <div class="schedule-management-container">
+                        <p>Select a professor to manage their schedule</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <!-- Professor Modal -->
+    <div id="professor-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProfessorModal()">&times;</span>
+            <h3 id="professor-modal-title">Add Professor</h3>
+            <form id="professor-form">
+                <input type="hidden" id="professor-id">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="professor-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Department:</label>
+                    <input type="text" id="professor-department" required>
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="professor-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="text" id="professor-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Office:</label>
+                    <select id="professor-office" required>
+                        <option value="">Select Office</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeProfessorModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Office Modal -->
+    <div id="office-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOfficeModal()">&times;</span>
+            <h3 id="office-modal-title">Add Office</h3>
+            <form id="office-form">
+                <input type="hidden" id="office-id">
+                <div class="form-group">
+                    <label>Office Number:</label>
+                    <input type="text" id="office-number" required>
+                </div>
+                <div class="form-group">
+                    <label>Building:</label>
+                    <select id="office-building" required>
+                        <option value="floor1">1st Floor</option>
+                        <option value="floor2">2nd Floor</option>
+                        <option value="floor3">3rd Floor</option>
+                        <option value="floor4">4th Floor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Floor:</label>
+                    <input type="text" id="office-floor" required>
+                </div>
+                <div class="form-group">
+                    <label>Location:</label>
+                    <input type="text" id="office-location" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeOfficeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script src="admin.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

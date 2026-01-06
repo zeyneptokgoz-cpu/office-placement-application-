@@ -1,0 +1,699 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --final-red: #C00000;
+    --final-white: #FFFFFF;
+    --final-dark: #333333;
+    --final-light: #F8F8F8;
+    --final-border: #E0E0E0;
+    --final-success: #2E8B57;
+    --sidebar-width: 250px;
+}
+
+body {
+    background-color: var(--final-light);
+    color: var(--final-dark);
+}
+
+/* HEADER */
+header {
+    background: var(--final-red);
+    box-shadow: 0 2px 10px rgba(192, 0, 0, 0.3);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    min-height: 70px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    min-height: 70px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+/* LOGO STİLLERİ - ANA SAYFADAKİYLE AYNI */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 50px;
+}
+
+.logo-image {
+    height: 150%;
+    max-height: 85px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    color: var(--final-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-year {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    line-height: 1;
+}
+
+.logo-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.1;
+}
+/* NAV LINKS - ANA SAYFADAKİ GİBİ DÜZENLENDİ */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* YENİ: Ana sayfadaki boşluk */
+}
+
+.nav-links a {
+    color: var(--final-white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+    border: 1px solid transparent;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--final-white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3); 
+    transform: translateY(-1px);
+}
+/* ADMIN LAYOUT */
+.admin-container {
+    display: flex;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--final-white);
+    border-right: 1px solid var(--final-border);
+    height: calc(100vh - 80px);
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar-menu {
+    padding: 1rem 0;
+}
+
+.menu-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.menu-item:hover {
+    background: var(--final-light);
+}
+
+.menu-item.active {
+    background: var(--final-light);
+    border-left-color: var(--final-red);
+    color: var(--final-red);
+    font-weight: 500;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    max-width: calc(100% - var(--sidebar-width));
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* STATS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--final-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--final-border);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--final-red);
+    margin-top: 0.5rem;
+}
+
+/* SECTION HEADER */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    color: var(--final-red);
+}
+
+/* BUTTONS */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: var(--final-red);
+    color: var(--final-white);
+}
+
+.btn-primary:hover {
+    background: #a00000;
+}
+
+.btn-secondary {
+    background: var(--final-border);
+    color: var(--final-dark);
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: var(--final-white);
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* TABLES */
+.table-container {
+    background: var(--final-white);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--final-border);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--final-border);
+}
+
+.data-table th {
+    background: var(--final-light);
+    font-weight: 600;
+    color: var(--final-red);
+}
+
+.data-table tr:hover {
+    background: var(--final-light);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* EQUIPMENT GRID */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.equipment-card {
+    background: var(--final-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--final-border);
+}
+
+.equipment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.equipment-office {
+    font-weight: bold;
+    color: var(--final-red);
+}
+
+.equipment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.equipment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: var(--final-light);
+    border-radius: 4px;
+}
+
+/* MODALS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: var(--final-white);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.close:hover {
+    color: var(--final-dark);
+}
+
+/* FORMS */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--final-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* SCHEDULE MANAGEMENT */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.schedule-day {
+    background: var(--final-white);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--final-border);
+}
+
+.schedule-day h4 {
+    color: var(--final-red);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.schedule-slot {
+    margin-bottom: 0.5rem;
+}
+
+.time-slot {
+    font-size: 0.875rem;
+    color: var(--final-dark);
+    margin-bottom: 0.25rem;
+}
+
+/* RESPONSIVE TASARIM - MOBİL */
+@media (max-width: 768px) {
+    .navbar {
+        min-height: 60px; /* YENİ: Mobil yükseklik */
+        padding: 0 15px; /* YENİ: Mobil padding */
+    }
+    
+    header {
+        min-height: 60px; /* YENİ: Mobil yükseklik */
+    }
+    
+    .admin-container {
+        margin-top: 70px; /* YENİ: Mobil margin */
+    }
+    
+    .logo {
+        height: 40px; /* YENİ: Mobil logo yüksekliği */
+    }
+    
+    .logo-image {
+        max-height: 40px; /* YENİ: Mobil logo */
+        font-size: 1rem; /* YENİ: Mobil font */
+        padding: 6px; /* YENİ: Mobil padding */
+    }
+    
+    .logo-text {
+        display: none; /* YENİ: Mobilde logo text'i gizle */
+    }
+    
+    .nav-links {
+        gap: 0.8rem; /* YENİ: Mobil boşluk */
+    }
+    
+    .nav-links a,
+    .logout-btn {
+        padding: 0.4rem 0.8rem; /* YENİ: Mobil padding */
+        font-size: 0.875rem; /* YENİ: Mobil font */
+    }
+    
+    .sidebar {
+        width: 200px; /* YENİ: Mobil sidebar genişliği */
+    }
+    
+    .main-content {
+        margin-left: 200px; /* YENİ: Mobil margin */
+        padding: 1rem; /* YENİ: Mobil padding */
+        max-width: calc(100% - 200px); /* YENİ: Mobil genişlik */
+    }
+}
+
+/* ÇOK KÜÇÜK EKRANLAR */
+@media (max-width: 480px) {
+    .navbar {
+        min-height: 55px; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    header {
+        min-height: 55px; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    .admin-container {
+        margin-top: 65px; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    .logo {
+        height: 35px; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    .logo-image {
+        max-height: 35px; /* YENİ: Çok küçük ekranlar */
+        font-size: 0.9rem; /* YENİ: Çok küçük ekranlar */
+        padding: 4px; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    .nav-links {
+        gap: 0.5rem; /* YENİ: Çok küçük ekranlar */
+    }
+    
+    .nav-links a,
+    .logout-btn {
+        padding: 0.3rem 0.6rem; /* YENİ: Çok küçük ekranlar */
+        font-size: 0.8rem; /* YENİ: Çok küçük ekranlar */
+    }
+}
+
+/* SCHEDULE MANAGEMENT - DÜZELTİLMİŞ */
+.schedule-management-container {
+    background: var(--final-white);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 2px solid var(--final-border);
+    margin-top: 2rem;
+}
+
+#professor-select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--final-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    min-width: 300px;
+    background: var(--final-white);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#professor-select:focus {
+    border-color: var(--final-red);
+}
+
+.schedule-display {
+    margin-top: 2rem;
+}
+
+.schedule-week {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.schedule-day {
+    background: var(--final-light);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--final-border);
+}
+
+.schedule-day h4 {
+    color: var(--final-red);
+    text-align: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--final-border);
+}
+
+.schedule-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.schedule-slot {
+    background: var(--final-white);
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    border-left: 4px solid var(--final-border);
+}
+
+.schedule-slot.lecture {
+    border-left-color: var(--final-red);
+    background: rgba(192, 0, 0, 0.05);
+}
+
+.schedule-slot.office {
+    border-left-color: var(--final-success);
+    background: rgba(46, 139, 87, 0.05);
+}
+
+.schedule-slot .time {
+    font-weight: 600;
+    color: var(--final-dark);
+}
+
+.schedule-slot .title {
+    color: var(--final-dark);
+    opacity: 0.8;
+}
+
+.no-schedule {
+    text-align: center;
+    padding: 2rem;
+    color: var(--final-dark);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+.schedule-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.schedule-edit-btn {
+    background: var(--final-red);
+    color: var(--final-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.schedule-edit-btn:hover {
+    background: #a00000;
+    transform: translateY(-2px);
+}
+
+/* SCHEDULE EDIT MODAL */
+.schedule-edit-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.schedule-modal-content {
+    background-color: var(--final-white);
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.schedule-edit-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.day-edit-container {
+    background: var(--final-light);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.day-edit-container h5 {
+    color: var(--final-red);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.slot-input-group {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    background: var(--final-white);
+    border-radius: 4px;
+}
+
+.slot-input-group input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+    border: 1px solid var(--final-border);
+    border-radius: 4px;
+}
+
+.add-slot-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--final-border);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.add-slot-btn:hover {
+    background: #d0d0d0;
+}
+
+.remove-slot-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+}

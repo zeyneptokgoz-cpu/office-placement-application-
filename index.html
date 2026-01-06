@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final University - Academic Directory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="assest/img/Logo 1.png" alt="Final University" class="logo-image">
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active" data-i18n="home">Home</a>
+                    <a href="#office-list" class="nav-link" data-i18n="office_list">Office List</a>
+                    <a href="#requests" class="nav-link" data-i18n="requests">Requests</a>
+                    <a href="#contact" class="nav-link" data-i18n="contact">Contact</a>
+                    <a href="admin.html" class="admin-link" data-i18n="admin_panel">⚙️ Admin Panel</a>
+                    <button class="logout-btn" onclick="window.logout()">Logout</button>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="tr">TR</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="container main-section active">
+        <div class="hero">
+            <h1 data-i18n="main_title">Academic Staff Directory</h1>
+            <p data-i18n="main_subtitle">Quick access to faculty and office information</p>
+            
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="search-input" placeholder="Search by name, department or office number..." data-i18n-placeholder="search_placeholder">
+            </div>
+        </div>
+
+        <div class="floor-tabs">
+            <div class="tab active" data-floor="floor1" data-i18n="floor_1">1st Floor</div>
+            <div class="tab" data-floor="floor2" data-i18n="floor_2">2nd Floor</div>
+            <div class="tab" data-floor="floor3" data-i18n="floor_3">3rd Floor</div>
+            <div class="tab" data-floor="floor4" data-i18n="floor_4">4th Floor</div>
+            <div class="tab" data-floor="floor5">Other Floors</div>
+        </div>
+
+        <div class="office-grid" id="office-grid">
+            <!-- Ofis kartları yüklenecek -->
+        </div>
+    </section>
+
+    <!-- OFFICE LIST SECTION -->
+    <section id="office-list" class="container main-section">
+        <div class="section-header">
+            <h2 data-i18n="all_offices">All Offices</h2>
+            <div class="view-options">
+                <button class="view-btn active" data-view="grid" data-i18n="grid_view">Grid View</button>
+                <button class="view-btn" data-view="list" data-i18n="list_view">List View</button>
+            </div>
+        </div>
+
+        <div class="filters">
+            <select id="floor-filter">
+                <option value="" data-i18n="all_floors">All Floors</option>
+                <option value="1st Floor" data-i18n="floor_1">1st Floor</option>
+                <option value="2nd Floor" data-i18n="floor_2">2nd Floor</option>
+                <option value="3rd Floor" data-i18n="floor_3">3rd Floor</option>
+                <option value="4th Floor" data-i18n="floor_4">4th Floor</option>
+                <option value="Other Floors">Other Floors</option>
+            </select>
+            
+            <select id="department-filter">
+                <option value="" data-i18n="all_departments">All Departments</option>
+            </select>
+        </div>
+
+        <div class="all-offices-grid" id="all-offices-grid">
+            <!-- Tüm ofisler grid görünümü -->
+        </div>
+
+        <div class="all-offices-list" id="all-offices-list">
+            <!-- Liste görünümü -->
+        </div>
+    </section>
+
+    <!-- REQUESTS SECTION -->
+    <section id="requests" class="container main-section">
+        <div class="section-header">
+            <h2 data-i18n="submit_request">Submit a Request</h2>
+            <p data-i18n="request_subtitle">Request appointments, equipment, or other needs</p>
+        </div>
+
+        <div class="request-options">
+            <div class="request-card" onclick="if(window.app) app.showRequestForm('appointment')">
+                <div class="request-icon">📅</div>
+                <h3 data-i18n="request_appointment">Appointment Request</h3>
+                <p data-i18n="request_appointment_desc">Request a meeting with a professor</p>
+            </div>
+            
+            <div class="request-card" onclick="if(window.app) app.showRequestForm('equipment')">
+                <div class="request-icon">🖨️</div>
+                <h3 data-i18n="request_equipment">Equipment Request</h3>
+                <p data-i18n="request_equipment_desc">Request equipment from a shared office</p>
+            </div>
+            
+            <div class="request-card" onclick="if(window.app) app.showRequestForm('maintenance')">
+                <div class="request-icon">🔧</div>
+                <h3 data-i18n="request_maintenance">Maintenance Request</h3>
+                <p data-i18n="request_maintenance_desc">Report issues with office equipment</p>
+            </div>
+            
+            <div class="request-card" onclick="if(window.app) app.showRequestForm('other')">
+                <div class="request-icon">📝</div>
+                <h3 data-i18n="request_other">Other Request</h3>
+                <p data-i18n="request_other_desc">Submit other types of requests</p>
+            </div>
+        </div>
+
+        <!-- REQUEST FORM (Gizli başlangıçta) -->
+        <div id="request-form-container" class="request-form-container" style="display: none;">
+            <button class="back-button" onclick="if(window.app) app.hideRequestForm()" data-i18n="back">← Back</button>
+            <h3 id="request-form-title"></h3>
+            <form id="request-form">
+                <!-- Form alanları dinamik olarak yüklenecek -->
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="container main-section">
+        <div class="contact-wrapper">
+            <!-- LEFT SIDE -->
+            <div class="contact-left">
+                <div class="contact-info">
+                    <h2 data-i18n="contact_info">Contact Information</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h3 data-i18n="general_inquiries">📞 General Inquiries</h3>
+                            <p>+90 (312) 123 45 67</p>
+                            <small data-i18n="working_hours">Monday - Friday, 9:00 - 17:00</small>
+                        </div>
+                        <div class="contact-item">
+                            <h3 data-i18n="email">📧 Email</h3>
+                            <p>academic@final.edu.tr</p>
+                            <small data-i18n="for_academic_inquiries">For general academic inquiries</small>
+                        </div>
+                        <div class="contact-item">
+                            <h3 data-i18n="campus_address">🏢 Campus Address</h3>
+                            <p>International Final University<br>
+                               Main Building<br>
+                               Ankara, Turkey</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3 data-i18n="office_management">📄 Office Management</h3>
+                            <p>office.management@final.edu.tr</p>
+                            <p>+90 (312) 123 45 68</p>
+                            <small data-i18n="for_office_changes">For office assignments and changes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="contact-right">
+                <div class="quick-links-box">
+                    <h3 data-i18n="quick_links">Quick Links</h3>
+                    <div class="links-grid-vertical">
+                        <a href="#home" class="quick-link" data-i18n="search_directory">🔍 Search Directory</a>
+                        <a href="#office-list" class="quick-link" data-i18n="all_offices">📋 Office List</a>
+                        <a href="#requests" class="quick-link" data-i18n="submit_request">📝 Submit Request</a>
+                        <a href="admin.html" class="quick-link admin-only" data-i18n="admin_access">⚙️ Admin Access</a>
+                        <a href="#" class="quick-link" data-i18n="university_website">🌐 University Website</a>
+                    </div>
+                </div>
+
+                <div class="emergency-contact">
+                    <h3>🚨 Emergency Contact</h3>
+                    <p class="emergency-number">+90 (312) 123 45 00</p>
+                    <small>24/7 Campus Security</small>
+                </div>
+
+                <div class="office-hours-box">
+                    <h3>🕐 Office Hours</h3>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span>Monday - Thursday</span>
+                            <strong>09:00 - 17:00</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Friday</span>
+                            <strong>09:00 - 16:00</strong>
+                        </div>
+                        <div class="hours-item">
+                            <span>Weekend</span>
+                            <strong>Closed</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSOR DETAIL SECTION -->
+    <section id="professor-detail" class="container main-section">
+        <button class="back-button" onclick="if(window.app) app.showHomePage()" data-i18n="back_home">← Back to Home</button>
+        
+        <div class="profile-header">
+            <div class="profile-image">👨‍🏫</div>
+            <div class="profile-info">
+                <h1 id="prof-name">-</h1>
+                <p id="prof-department">-</p>
+                <div class="contact-info">
+                    <div class="contact-item">📧 <span id="prof-email">-</span></div>
+                    <div class="contact-item">📞 <span id="prof-phone">-</span></div>
+                    <div class="contact-item">🏢 <span id="prof-office">-</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <h3 data-i18n="weekly_schedule">Weekly Schedule</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th data-i18n="time">Time</th>
+                        <th data-i18n="monday">Monday</th>
+                        <th data-i18n="tuesday">Tuesday</th>
+                        <th data-i18n="wednesday">Wednesday</th>
+                        <th data-i18n="thursday">Thursday</th>
+                        <th data-i18n="friday">Friday</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- OFFICE DETAIL SECTION -->
+    <section id="office-detail" class="container main-section">
+        <button class="back-button" onclick="if(window.app) app.showHomePage()" data-i18n="back_home">← Back to Home</button>
+        
+        <div class="profile-header">
+            <div class="profile-info">
+                <h1 id="office-number">-</h1>
+                <p id="office-location">-</p>
+            </div>
+        </div>
+
+        <div class="schedule-container">
+            <h3 data-i18n="office_professors">Professors in this Office</h3>
+            <div id="office-professors"></div>
+        </div>
+
+        <div class="schedule-container">
+            <h3 data-i18n="shared_equipment">Shared Equipment</h3>
+            <div class="equipment-list" id="office-equipment"></div>
+        </div>
+    </section>
+
+    <!-- Load Scripts in Order -->
+    <script src="config.js"></script>
+    <script src="api-service.js"></script>
+    <script src="data-mapper.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="ui-auth.js"></script>
+</body>
+</html>

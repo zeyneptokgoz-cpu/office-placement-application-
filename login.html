@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final University - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <img src="LOGO 2.jpg" alt="Final University" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-image-fallback" style="display: none;">FINAL</div>
+                <div class="logo-text">
+                    <div class="logo-year">2015</div>
+                    <div class="logo-title">INTERNATIONAL FINAL UNIVERSITY</div>
+                </div>
+            </div>
+            <h1>Academic Directory Login</h1>
+        </div>
+
+        <div class="login-body">
+            <div id="alert" class="alert"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="username" required placeholder="Enter your username or email" autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="password" required placeholder="Enter your password" autocomplete="current-password">
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link" onclick="alert('Please contact admin@final.edu.tr for password reset'); return false;">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+
+        <div class="login-footer">
+            © 2015-2024 International Final University. All rights reserved.
+        </div>
+    </div>
+
+    <!-- API Scripts -->
+    <script src="config.js"></script>
+    <script src="api-service.js"></script>
+    <script src="login.js"></script>  <!-- DEĞİŞTİRİLDİ: login-new.js → login.js -->
+</body>
+</html>
